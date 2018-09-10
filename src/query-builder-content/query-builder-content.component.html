@@ -1,0 +1,78 @@
+<div class="group">
+
+  <div class="form-control input-sm  brackets">
+    <span>(</span>
+  </div>
+
+  <div class="conditions">
+    <ng-template ngFor let-rule [ngForOf]="group.rules" let-i="index">
+
+      <div class="condition-element">
+        <select class="form-control" *ngIf="rule.type" [(ngModel)]="rule.condition">
+          <option *ngFor="let item of conditions">{{item}}</option>
+        </select>
+      </div>
+
+      <div class="form-control input-sm ">
+        <span class="glyphicon glyphicon-menu-left"></span>
+        <a style="cursor: pointer;" *ngIf="group.rules.length>1" (click)="removeCondition(index)">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="condition-element">
+        <select class="form-control" autofocus ng-change="selectedField(rule);" [(ngModel)]="rule.field">
+          <option value="">Select field</option>
+          <option *ngFor="let field of fields" [ngValue]="field">{{field}}</option>
+        </select>
+      </div>
+      <div class="condition-element">
+        <select class="form-control" [(ngModel)]="rule.operator">
+          <option *ngFor="let operator of operators" [ngValue]="operator">{{operator.name}}</option>
+        </select>
+
+        <input *ngFor="let index of getRuleParams(rule)"
+               type="text" [(ngModel)]="rule.value[index]" class="form-control input-sm"/>
+
+        <!--<select ng-repeat="index in [] | range:rule.operator.accept_values"
+                   *ngIf]="$root.ENUMS | map:'key'" [(ngModel)]="rule.value[index]"
+            ng-options="column as column.value for column in $root.ENUMS | filter:{key:rule.field}:true | pick:'value!=null' | propsFilter:{value:$select.search} track by column.id">
+        </select>-->
+
+      </div>
+
+      <div class="form-control input-sm">
+        <span class="glyphicon glyphicon-menu-right"></span>
+      </div>
+
+    </ng-template>
+
+  </div>
+
+  <div *ngFor="let kid of group.children" class="group">
+    <div class="condition-element">
+      <select [(ngModel)]="kid.condition" class="form-control">
+        <option *ngFor="let item of conditions">{{item}}</option>
+      </select>
+    </div>
+    <ngx-query-builder-content (fields)="fields" (group)="kid" (parent)="group"></ngx-query-builder-content>
+  </div>
+
+  <div class="form-control input-sm  brackets" uib-dropdown="">
+    <span>)</span>
+
+    <a style="cursor: pointer;" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle="">
+      <i class="caret"></i>
+    </a>
+    <ul class="dropdown-menu" role="menu" uib-dropdown-menu="">
+      <li>
+        <a (click)="addRule()" data-translate>add_condition</a>
+      </li>
+      <li>
+        <a (click)="addGroup()" data-translate>add_group</a>
+      </li>
+      <li>
+        <a (click)="removeGroup(parent, group);" data-translate>remove_group</a>
+      </li>
+    </ul>
+  </div>
+</div>

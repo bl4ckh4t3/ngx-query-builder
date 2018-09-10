@@ -1,0 +1,30 @@
+{
+  "name": "@bl4ckh4t3/ngx-query-builder",
+  "version": "0.0.1",
+  "description": "Query builder for Angular project using Bootstrap4",
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "components",
+    "query",
+    "query-builder",
+    "lucene",
+    "sql"
+  ],
+  "author": "Carmelo Pennisi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bl4ckh4t3/ngx-query-builder.git"
+  },
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/bl4ckh4t3/ngx-query-builder/issues"
+  },
+  "homepage": "https://github.com/bl4ckh4t3/ngx-query-builder",
+  "peerDependencies": {
+    "@angular/common": "^6.1.0",
+    "@angular/core": "^6.1.0",
+    "@angular/forms": "^6.1.0",
+    "rxjs": "^6.0.0"
+  }
+}

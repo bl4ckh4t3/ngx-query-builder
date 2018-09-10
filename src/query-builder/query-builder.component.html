@@ -1,0 +1,14 @@
+<div>
+  <ngx-query-builder-content class="condition" [fields]="fields"
+                             [group]="start"></ngx-query-builder-content>
+  <p class="text-right">
+    <button class="btn btn-info btn-sm" type="button" (click)="search();">
+      <span>{{'search'}}</span>
+    </button>
+    <button class="btn btn-default btn-sm" type="button" (click)="clear();">
+      <span>{{'cancel'}}</span>
+    </button>
+  </p>
+
+  <pre>{{query}}</pre>
+</div>
